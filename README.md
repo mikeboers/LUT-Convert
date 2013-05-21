@@ -14,3 +14,5 @@ Convert it to `cube` format:
 ~~~
 python hald_to_cube.py identity.png identity.cube
 ~~~
+
+[Read the notes.](NOTES.md)

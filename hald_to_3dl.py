@@ -9,6 +9,8 @@ from PIL import Image
 
 def main():
 
+    print("Warning: This script does not return accurate results.", file=sys.stderr)
+    
     opt_parser = OptionParser(usage='%prog [options] input.png output.3dl')
     opts, args = opt_parser.parse_args()
 

@@ -1,4 +1,17 @@
-*.3DL:
+General
+=======
+
+- There is a LOT more info in a Hald image than we pass into the *.cube:
+    - `convert hald:5 ident_5.png` results in a 25x25 image; 625 values
+
+- Do we want to target 3dl at all? It seems that the 10-bit nature will lead to rounding errors.
+
+
+Formats
+=======
+
+3DL
+---
     
     # Optional(?) header:
     3DMESH
@@ -8,12 +21,14 @@
     0 64 128 192 256 320 384 448 512 575 639 703 767 831 895 959 1023
 
     # Integer output values.
-    # for x in xrange(18):
-    #   for y in xrange(18):
-    #     for x in xrange(18):
+    # for r in xrange(18):
+    #   for g in xrange(18):
+    #     for b in xrange(18):
     $R_out $G_out $B_out
 
-*.CUBE:
+
+CUBE
+----
 
     #Created by: Adobe Photoshop CS6
     #Copyright: Copyright 2012 Adobe Systems Inc.
@@ -27,7 +42,7 @@
     DOMAIN_MAX 1.0 1.0 1.0
 
     # Float output values.
-    # for x in xrange(18):
-    #   for y in xrange(18):
-    #     for x in xrange(18):
+    # for b in xrange(18):
+    #   for g in xrange(18):
+    #     for r in xrange(18):
     $R_out $G_out $B_out
