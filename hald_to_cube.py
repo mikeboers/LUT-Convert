@@ -52,7 +52,7 @@ def main():
     for bi in xrange(steps):
         for gi in xrange(steps):
             for ri in xrange(steps):
-                r, g, b = lookup(ri, gi, bi)
+                r, g, b = lookup(ri, gi, bi)[:3]
                 out.write('%f %f %f\n' % (r / 255.0, g / 255.0, b / 255.0))
 
 
