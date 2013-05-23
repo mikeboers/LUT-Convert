@@ -24,7 +24,8 @@ def main():
     steps = int(round(math.pow(w, 1/3)))
     if steps ** 3 != w:
         print('HALD input size is invalid: %d is not a cube.' % w, file=sys.stderr)
-    print('%d steps' % steps, file=sys.stderr)
+
+    print('%d steps -> %d values' % (steps, steps**6), file=sys.stderr)
     # Assume that we are going from 8 bits to 10.
 
     out = open(args[1], 'w')
@@ -33,7 +34,7 @@ def main():
     #out.write('TITLE "Testing"\n')
     #out.write('\n')
     #out.write('#LUT size\n')
-    out.write('LUT_3D_SIZE %d\n' % steps)
+    out.write('LUT_3D_SIZE %d\n' % (steps ** 2))
     #out.write('\n')
     #out.write('#data domain\n')
     out.write('DOMAIN_MIN 0.0 0.0 0.0\n')
@@ -41,19 +42,25 @@ def main():
     #out.write('\n')
     #out.write('#LUT data points\n')
 
-    steps1 = steps + 1
-    steps3 = steps ** 2 * (steps + 1)
-    steps5 = steps ** 4 * (steps + 1)
-    data = list(in_.getdata())
-    def lookup(ri, gi, bi):
-        return data[
-            ri * steps1 + gi * steps3 + bi * steps5
-        ]
-    for bi in xrange(steps):
-        for gi in xrange(steps):
-            for ri in xrange(steps):
-                r, g, b = lookup(ri, gi, bi)[:3]
-                out.write('%f %f %f\n' % (r / 255.0, g / 255.0, b / 255.0))
+    if False:
+        steps1 = steps + 1
+        steps3 = steps ** 2 * (steps + 1)
+        steps5 = steps ** 4 * (steps + 1)
+        data = list(in_.getdata())
+        def lookup(ri, gi, bi):
+            return data[
+                ri * steps1 + gi * steps3 + bi * steps5
+            ]
+        for bi in xrange(steps):
+            for gi in xrange(steps):
+                for ri in xrange(steps):
+                    r, g, b = lookup(ri, gi, bi)[:3]
+                    out.write('%f %f %f\n' % (r / 255.0, g / 255.0, b / 255.0))
+    else:
+        for pixel in in_.getdata():
+            r, g, b = pixel[:3]
+            out.write('%f %f %f\n' % (r / 255.0, g / 255.0, b / 255.0))
+
 
 
 
