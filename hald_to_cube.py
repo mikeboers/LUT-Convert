@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from __future__ import print_function, division
 
 import math
@@ -16,7 +18,7 @@ def main():
         opt_parser.print_usage()
         exit(1)
 
-    in_ = Image.open(args[0])
+    in_ = Image.open(args[0]).convert("RGB")
     w, h = in_.size
     if w != h:
         print('HALD input is not square.', file=sys.stderr)
